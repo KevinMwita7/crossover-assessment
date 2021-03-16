@@ -6,6 +6,8 @@ import Call from 'src/app/core/models/call';
 import TemplateService from 'src/app/core/services/template.service';
 import Agents from 'src/app/core/services/mocks/data/agents.json';
 import Calls from 'src/app/core/services/mocks/data/calls.json';
+import Transcript from 'src/app/core/services/mocks/data/transcripts.json';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
     selector: 'app-analyzer',
@@ -32,19 +34,26 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
     }
     private _form: FormGroup;
 
+    updateSliderValue = (event: MatSliderChange): void => {
+        if(event.value) {
+            this._form.get("slider")?.setValue(event.value);
+        }
+    }
+
     constructor(
         private _tplService: TemplateService,
         private _fb: FormBuilder
     ) {
         this._form = this._fb.group({
             agent: _fb.control(null),
-            call: _fb.control({ value: null, disabled: true })
+            call: _fb.control({ value: null, disabled: true }),
+            slider: _fb.control(0),
         });
     }
 
     ngOnInit(): void {
-        this.dataSource.data = MOCK_DATA();
-        this.dataSourceRep.data = MOCK_DATA().slice(-25);
+        this.dataSource.data = Transcript.transcript;
+        this.dataSourceRep.data = Transcript.script;
     }
 
     ngAfterViewInit(): void {

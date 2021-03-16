@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CallComponent implements OnInit {
   @Input() dataSource: any;
   @Input() tableHeader: String = "";
+  @Input() category: String = "";
 
   displayedColumns: string[] = [
     'time',

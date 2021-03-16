@@ -19,6 +19,15 @@ mat-card {
     }
 }
 
+.mat-table {
+    border-spacing: 0 1em;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    display: table;
+    margin: 0px;
+}
+
 #intensity-selection {
     mat-slider {
         margin: 0 16px;
@@ -39,6 +48,7 @@ mat-card {
         .matcher {
             background: rgba(#5A5A71, .2);
             transition: background .2s;
+            padding: 10px 10px 5px 10px;
 
             &:hover {
                 background: rgba(#5A5A71, .4);
@@ -53,4 +63,9 @@ tr.mat-row {
 
 td.mat-cell {
     border-bottom: none;
+}
+
+.mat-header-cell {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.7),
 }

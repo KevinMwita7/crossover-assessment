@@ -19,16 +19,17 @@
                 </mat-select>
             </mat-form-field>
         </div>
-
-        <div id="intensity-selection" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
-            MATCHING SENSITIVITY
-        </div>
+    </div>
+    <div id="intensity-selection" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
+        <span>MATCHING SENSITIVITY</span>
+        <mat-slider color="primary" max="100" min="0" formControlName="slider" (input)="updateSliderValue($event)"></mat-slider>
+        <span>{{form.get('slider')?.value}}%</span>
     </div>
 </ng-template>
 
 <section class="content" fxLayout="row" fxFlex="grow" fxLayoutAlign="space-between strech" fxLayoutGap="24px" *ngIf="filterCalls.length">
-    <app-call [dataSource]="dataSource" fxFlex="grow" [tableHeader]="'Real'"></app-call>
-    <app-call [dataSource]="dataSourceRep" fxFlex="grow" [tableHeader]="'Expected'"></app-call>
+    <app-call [dataSource]="dataSource" fxFlex="grow" [tableHeader]="'Real'" [category]="'REAL'"></app-call>
+    <app-call [dataSource]="dataSourceRep" fxFlex="grow" [tableHeader]="'Expected'" [category]="'EXPECTED'"></app-call>
 </section>
 
 <ng-container *ngIf="!filterCalls.length">
