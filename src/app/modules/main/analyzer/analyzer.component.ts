@@ -8,6 +8,7 @@ import Agents from 'src/app/core/services/mocks/data/agents.json';
 import Calls from 'src/app/core/services/mocks/data/calls.json';
 import Transcript from 'src/app/core/services/mocks/data/transcripts.json';
 import { MatSliderChange } from '@angular/material/slider';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
     selector: 'app-analyzer',
@@ -75,6 +76,11 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
     // Return the slider's form control value
     get sliderValue(): number{
         return this.form.get('slider')?.value
+    }
+
+    // Reset the slider whenever the call changes
+    handleCallChange = (event: MatSelectChange):void => {
+        this.form.get('slider')?.setValue(38);
     }
 }
 
