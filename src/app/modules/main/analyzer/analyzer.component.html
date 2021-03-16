@@ -23,13 +23,13 @@
     <div id="intensity-selection" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
         <span>MATCHING SENSITIVITY</span>
         <mat-slider color="primary" max="100" min="0" formControlName="slider" (input)="updateSliderValue($event)"></mat-slider>
-        <span>{{form.get('slider')?.value}}%</span>
+        <span>{{sliderValue}}%</span>
     </div>
 </ng-template>
 
 <section class="content" fxLayout="row" fxFlex="grow" fxLayoutAlign="space-between strech" fxLayoutGap="24px" *ngIf="filterCalls.length">
-    <app-call [dataSource]="dataSource" fxFlex="grow" [tableHeader]="'Real'" [category]="'REAL'"></app-call>
-    <app-call [dataSource]="dataSourceRep" fxFlex="grow" [tableHeader]="'Expected'" [category]="'EXPECTED'"></app-call>
+    <app-call [dataSource]="dataSource" fxFlex="grow" [tableHeader]="'Real'" [category]="'REAL'" [sliderValue]="sliderValue"></app-call>
+    <app-call [dataSource]="dataSourceRep" fxFlex="grow" [tableHeader]="'Expected'" [category]="'EXPECTED'" [sliderValue]="sliderValue"></app-call>
 </section>
 
 <ng-container *ngIf="!filterCalls.length">

@@ -34,6 +34,7 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
     }
     private _form: FormGroup;
 
+    // Update the slider's formControl in real time
     updateSliderValue = (event: MatSliderChange): void => {
         if(event.value) {
             this._form.get("slider")?.setValue(event.value);
@@ -47,7 +48,7 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
         this._form = this._fb.group({
             agent: _fb.control(null),
             call: _fb.control({ value: null, disabled: true }),
-            slider: _fb.control(0),
+            slider: _fb.control(38),
         });
     }
 
@@ -60,7 +61,7 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
         this._tplService.register('subHeader', this.subHeader);
     }
 
-    // Filter the calls by the selected agent
+    // Filter the calls made by the selected agent
     get filterCalls(): Call[] {
         let agentFormControl = this._form.get("agent");
         let callFormControl = this._form.get("call");
@@ -69,6 +70,11 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
         if(filteredCalls.length) callFormControl?.enable();
         else callFormControl?.disable();
         return filteredCalls;
+    }
+
+    // Return the slider's form control value
+    get sliderValue(): number{
+        return this.form.get('slider')?.value
     }
 }
 
