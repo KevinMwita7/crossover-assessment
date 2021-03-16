@@ -21,6 +21,9 @@
                     <mat-option *ngFor="let call of filterCalls" [value]="call.call_id">
                         {{ call.call_start_time | date: "MM.dd.yyyy." }} - {{call.customer[0].full_name}}
                     </mat-option>
+                    <mat-option [value]="1234">
+                        1234
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
