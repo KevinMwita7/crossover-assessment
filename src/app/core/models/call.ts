@@ -13,7 +13,7 @@ export default class Call {
         channel_no: 2
       }
     ];
-    call_start_time!: String;
+    call_start_time!: string;
     gs_file_url!: String;
     duration!: Number
 }

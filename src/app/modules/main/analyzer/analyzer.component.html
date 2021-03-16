@@ -14,7 +14,7 @@
                 <mat-icon matPrefix>phone</mat-icon>
                 <mat-select disableOptionCentering formControlName="call" panelClass="dropdown">
                     <mat-option *ngFor="let call of filterCalls" [value]="call.call_id">
-                        {{call.customer[0].full_name}}
+                        {{ call.call_start_time | date: "MM.dd.yyyy." }} - {{call.customer[0].full_name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

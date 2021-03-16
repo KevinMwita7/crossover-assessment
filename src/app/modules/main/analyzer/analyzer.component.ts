@@ -38,7 +38,7 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
     ) {
         this._form = this._fb.group({
             agent: _fb.control(null),
-            call: _fb.control({ value: null })
+            call: _fb.control({ value: null, disabled: true })
         });
     }
 
@@ -54,7 +54,12 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
     // Filter the calls by the selected agent
     get filterCalls(): Call[] {
         let agentFormControl = this._form.get("agent");
-        return Calls.filter((call:Call) => call.agent[0].agent_id === agentFormControl?.value);
+        let callFormControl = this._form.get("call");
+        // Only enable the calls select element if there were calls made
+        let filteredCalls = Calls.filter((call:Call) => call.agent[0].agent_id === agentFormControl?.value);
+        if(filteredCalls.length) callFormControl?.enable();
+        else callFormControl?.disable();
+        return filteredCalls;
     }
 }
 
