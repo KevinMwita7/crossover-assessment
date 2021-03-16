@@ -1,0 +1,27 @@
+[
+  {
+    "agentID": "A7f63308a",
+    "fullName": "Harvey Pekar",
+    "email": "harvey.pekar@crossover.com"
+  },
+  {
+    "agentID": "7f63308ab",
+    "fullName": "Jonah Jameson",
+    "email": "jonah.jameson@crossover.com"
+  },
+  {
+    "agentID": "7f63308ac",
+    "fullName": "Deadpool",
+    "email": "deadpool@crossover.com"
+  },
+  {
+    "agentID": "7f63308ad",
+    "fullName": "Jenny Sparks",
+    "email": "jenny.sparks@crossover.com"
+  },
+  {
+    "agentID": "7f63308ae",
+    "fullName": "Scott Pilgrim",
+    "email": "scott.pilgrim@crossover.com"
+  }
+]

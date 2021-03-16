@@ -1,0 +1,38 @@
+<ng-template #subHeader [formGroup]="form">
+    <div class=flex>
+        <div id="call-selection">
+            <mat-form-field floatLabel="never">
+                <mat-label>Agent</mat-label>
+                <mat-icon matPrefix>supervised_user_circle</mat-icon>
+                <mat-select disableOptionCentering formControlName="agent" panelClass="dropdown">
+                    <mat-option *ngFor="let AGENT of AGENTS" [value]="AGENT.agentID">{{AGENT.fullName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        
+            <mat-form-field floatLabel="never">
+                <mat-label>Call</mat-label>
+                <mat-icon matPrefix>phone</mat-icon>
+                <mat-select disableOptionCentering formControlName="call" panelClass="dropdown">
+                    <mat-option *ngFor="let call of filterCalls" [value]="call.call_id">
+                        {{call.customer[0].full_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div id="intensity-selection" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="24px">
+            MATCHING SENSITIVITY
+        </div>
+    </div>
+</ng-template>
+
+<section class="content" fxLayout="row" fxFlex="grow" fxLayoutAlign="space-between strech" fxLayoutGap="24px" *ngIf="filterCalls.length">
+    <app-call [dataSource]="dataSource" fxFlex="grow" [tableHeader]="'Real'"></app-call>
+    <app-call [dataSource]="dataSourceRep" fxFlex="grow" [tableHeader]="'Expected'"></app-call>
+</section>
+
+<ng-template *ngIf="!filterCalls.length">
+    <div class="empty-state">
+        No data to be displayed
+    </div>
+</ng-template>
