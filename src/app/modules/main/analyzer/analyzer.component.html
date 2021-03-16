@@ -31,8 +31,10 @@
     <app-call [dataSource]="dataSourceRep" fxFlex="grow" [tableHeader]="'Expected'"></app-call>
 </section>
 
-<ng-template *ngIf="!filterCalls.length">
-    <div class="empty-state">
-        No data to be displayed
+<ng-container *ngIf="!filterCalls.length">
+    <div class="empty-state text-center">
+        <img src="/assets/img/choose.svg"/>
+        <h1 class="mat-h1 font-weight-bold">Selection pending</h1>
+        <p class="mat-body">Select a call from top menu and a transcript analysis will be shown here</p>
     </div>
-</ng-template>
+</ng-container>

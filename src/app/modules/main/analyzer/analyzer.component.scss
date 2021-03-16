@@ -6,7 +6,7 @@ $mat-card-header-border-color: rgba(#000, .12) !default;
     justify-items: space-between;
 }
 
-mat-card {
+/*mat-card {
     padding: 0 !important;
     
     mat-card-header {
@@ -53,4 +53,20 @@ tr.mat-row {
 
 td.mat-cell {
     border-bottom: none;
+}*/
+
+.empty-state {
+    position: absolute;
+    width: 332px;
+    height: 385px;
+    left: 554px;
+    top: 285px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.font-weight-bold {
+    font-weight: bold;
 }
