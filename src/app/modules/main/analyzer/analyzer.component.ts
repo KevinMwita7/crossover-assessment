@@ -6,7 +6,7 @@ import Call from 'src/app/core/models/call';
 import TemplateService from 'src/app/core/services/template.service';
 import Agents from 'src/app/core/services/mocks/data/agents.json';
 import Calls from 'src/app/core/services/mocks/data/calls.json';
-import Transcript from 'src/app/core/services/mocks/data/transcripts.json';
+import Transcripts from 'src/app/core/services/mocks/data/transcripts.json';
 import { MatSliderChange } from '@angular/material/slider';
 import { MatSelectChange } from '@angular/material/select';
 
@@ -26,6 +26,7 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
     dataSource: MatTableDataSource<any> = new MatTableDataSource();
     dataSourceRep: MatTableDataSource<any> = new MatTableDataSource();
     AGENTS = Agents;
+    transcripts = Transcripts;
 
     @ViewChild('subHeader')
     subHeader?: TemplateRef<any>;
@@ -54,8 +55,8 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this.dataSource.data = Transcript.transcript;
-        this.dataSourceRep.data = Transcript.script;
+        this.dataSource.data = Transcripts.transcript;
+        this.dataSourceRep.data = Transcripts.script;
     }
 
     ngAfterViewInit(): void {

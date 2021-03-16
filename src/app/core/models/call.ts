@@ -1,3 +1,5 @@
+import Customer from "./customer";
+
 export default class Call {
     call_id!: String;
     calltype_id!: String;
@@ -7,12 +9,7 @@ export default class Call {
         channel_no: Number
       }
     ];
-    customer!: [
-      {
-        full_name: String;
-        channel_no: 2
-      }
-    ];
+    customer!: Customer[];
     call_start_time!: string;
     gs_file_url!: String;
     duration!: Number

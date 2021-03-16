@@ -36,8 +36,25 @@
 </ng-template>
 
 <section class="content" fxLayout="row" fxFlex="grow" fxLayoutAlign="space-between strech" fxLayoutGap="24px" *ngIf="filterCalls.length">
-    <app-call [dataSource]="dataSource" fxFlex="grow" [tableHeader]="'Real'" [category]="'REAL'" [sliderValue]="sliderValue"></app-call>
-    <app-call [dataSource]="dataSourceRep" fxFlex="grow" [tableHeader]="'Expected'" [category]="'EXPECTED'" [sliderValue]="sliderValue"></app-call>
+    <app-call 
+    [dataSource]="dataSource" 
+    fxFlex="grow" 
+    [tableHeader]="'Real'" 
+    [category]="'REAL'" 
+    [sliderValue]="sliderValue" 
+    [agents]="AGENTS"
+    [customer]="transcripts.customer"
+    [agent]="transcripts.agent"
+    >
+    </app-call>
+    <app-call 
+    [dataSource]="dataSourceRep" 
+    fxFlex="grow" 
+    [tableHeader]="'Expected'" 
+    [category]="'EXPECTED'" 
+    [sliderValue]="sliderValue"
+    >
+    </app-call>
 </section>
 
 <ng-container *ngIf="!filterCalls.length">
