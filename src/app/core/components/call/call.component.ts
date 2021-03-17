@@ -85,6 +85,7 @@ export class CallComponent implements OnInit {
   resetMatchingIndex() {
     this.expectedScriptIndex.emit(-1);
   }
+  
   constructor() { }
 
   ngOnInit(): void {

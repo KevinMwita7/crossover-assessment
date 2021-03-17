@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, OnChanges, SimpleChange } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
@@ -6,13 +6,12 @@ import * as d3 from 'd3';
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.scss']
 })
-export class PieComponent implements OnInit, AfterViewInit {
+export class PieComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() id!: String; // The id of the pie chart in the template
+  @Input() transcripts!: any[]; // The real or expected messages depending on the category
+  @Input() sliderValue!: number; // The current slider value
+  @Input() matches!: any;
 
-  private data = [
-    {"Framework": "Vue", "Stars": "166443", "Released": "2014"},
-    {"Framework": "React", "Stars": "150793", "Released": "2013"},
-  ];
   private svg:any;
   private width = 30;
   private height = 24;
@@ -34,18 +33,21 @@ export class PieComponent implements OnInit, AfterViewInit {
 
   private createColors(): void {
     this.colors = d3.scaleOrdinal()
-    .domain(this.data.map(d => d.Stars.toString()))
+    .domain([this.matchingPercentage.hits.toString(), this.matchingPercentage.misses.toString()])
     .range(["#5a5a71", "#eceff1"]);
   }
 
   private drawChart(): void {
     // Compute the position of each group on the pie:
-    const pie = d3.pie<any>().value((d: any) => Number(d.Stars));
+    const pie = d3.pie<any>().value((d: number) => d);
 
     // Build the pie chart
     this.svg
     .selectAll('pieces')
-    .data(pie(this.data))
+    .data(pie([
+      this.matchingPercentage.hits, 
+      this.matchingPercentage.misses
+    ]))
     .enter()
     .append('path')
     .attr('d', d3.arc()
@@ -57,6 +59,14 @@ export class PieComponent implements OnInit, AfterViewInit {
     .style("stroke-width", "1px");
 }
 
+  get matchingPercentage(): {[propertyName: string]: number} {
+    let matches = this.transcripts.filter(transcript => transcript.similarity * 100 >= this.sliderValue);
+    return {
+      "hits": Math.round(matches.length / this.transcripts.length * 100),
+      "misses": 100 - Math.round(matches.length / this.transcripts.length * 100)
+    };
+  }
+
   constructor() { 
   }
 
@@ -67,6 +77,13 @@ export class PieComponent implements OnInit, AfterViewInit {
     this.createSvg();
     this.createColors();
     this.drawChart();
+  }
+
+  ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+    // Update the pie chart when the slider moves
+    if(changes["sliderValue"] && !changes["sliderValue"].firstChange) {
+      this.drawChart();
+    }
   }
 
 }
