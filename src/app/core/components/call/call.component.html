@@ -17,7 +17,7 @@
                 </ng-template>
 
             </ng-container>
-
+            <!--Hide text class is applied if the previous message is from the current user-->
             <ng-container matColumnDef="speaker">
                 <th mat-header-cell *matHeaderCellDef>Speaker</th>
                 <ng-container *ngIf="category==='REAL'; then speaker else rep"></ng-container>

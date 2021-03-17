@@ -17,15 +17,38 @@ mat-card {
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
     }
+
+    // Make the table scrollable
+    mat-card-content {
+        height: 510px;
+        overflow-y: scroll;
+        // Scrollbar styling for firefox
+        scrollbar-width: thin;
+        scrollbar-color: #C4C4C4 white;
+    }
+
+    // Scrollbar styling for Chrome, Edge, and Safari
+    .mat-card-content::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .mat-card-content::-webkit-scrollbar-track {
+        background: white;
+    }
+
+    .mat-card-content::-webkit-scrollbar-thumb {
+        background-color: #C4C4C4;
+        border-radius: 10px;
+        border: 3px solid white;
+    }
 }
 
+// Space the rows within the table
 .mat-table {
-    border-spacing: 0 1em;
+    border-spacing: 0 1.53em;
     width: 100%;
     max-width: 100%;
-    margin-bottom: 1rem;
     display: table;
-    margin: 0px;
 }
 
 #intensity-selection {
@@ -70,6 +93,13 @@ td.mat-cell {
     color: rgba(0, 0, 0, 0.7),
 }
 
+// Hides the text
 .hide-text {
     color: transparent;
+}
+
+// Fix the header on the top
+.mat-header-row {
+    position: sticky;
+    top: 0;
 }

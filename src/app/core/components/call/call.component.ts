@@ -23,7 +23,7 @@ export class CallComponent implements OnInit {
     'sentence'
   ];
 
-  // Calculate the current time the real conversation is on
+  // Calculate the time a message was sent
   calculateTime(timeFrom: number): String {
     return `0${Math.floor(timeFrom / 60)}:${timeFrom < 59 ? timeFrom : timeFrom % 60}`;
   }
