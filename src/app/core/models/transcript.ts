@@ -1,13 +1,7 @@
-import { Agent } from "http";
-import Customer from "./customer";
+import Script from "./script";
 
-export class Transcript {
-    call_id!: String;
-    file_url!: String;
-    calltype_id!: String;
-    call_datetime!: String;
-    duration!: Number;
-    agent!: Agent[];
-    customer!: Customer[];
-    script!: any[];
+export default class Transcript extends Script {
+    channel!: number;
+    timeFrom!: number;
+    timeTo!: number;
 }

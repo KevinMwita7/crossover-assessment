@@ -6,11 +6,11 @@ export default class Call {
     agent!: [
       {
         agent_id: String;
-        channel_no: Number
+        channel_no: number
       }
     ];
     customer!: Customer[];
     call_start_time!: string;
     gs_file_url!: String;
-    duration!: Number
+    duration!: number
 }

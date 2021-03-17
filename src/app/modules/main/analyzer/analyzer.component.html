@@ -37,7 +37,7 @@
 
 <section class="content" fxLayout="row" fxFlex="grow" fxLayoutAlign="space-between strech" fxLayoutGap="24px" *ngIf="filterCalls.length">
     <app-call 
-    [dataSource]="dataSource" 
+    [dataSource]="transcripts" 
     fxFlex="grow" 
     [tableHeader]="'Real'" 
     [category]="'REAL'" 
@@ -45,14 +45,16 @@
     [agents]="AGENTS"
     [customer]="transcripts.customer"
     [agent]="transcripts.agent"
+    (expectedScriptIndex)="highlightExpectedMessage($event)"
     >
     </app-call>
     <app-call 
-    [dataSource]="dataSourceRep" 
+    [dataSource]="transcripts"
     fxFlex="grow" 
     [tableHeader]="'Expected'" 
     [category]="'EXPECTED'" 
     [sliderValue]="sliderValue"
+    [matchingExpectedColumnIndex]="matchingExpectedColumnIndex"
     >
     </app-call>
 </section>

@@ -6,9 +6,10 @@ import Call from 'src/app/core/models/call';
 import TemplateService from 'src/app/core/services/template.service';
 import Agents from 'src/app/core/services/mocks/data/agents.json';
 import Calls from 'src/app/core/services/mocks/data/calls.json';
-import Transcripts from 'src/app/core/services/mocks/data/transcripts.json';
+import * as _Transcripts_ from 'src/app/core/services/mocks/data/transcripts.json';
 import { MatSliderChange } from '@angular/material/slider';
 import { MatSelectChange } from '@angular/material/select';
+import { Transcripts } from 'src/app/core/models/transcripts';
 
 @Component({
     selector: 'app-analyzer',
@@ -23,10 +24,11 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
         'sentence'
     ];
 
-    dataSource: MatTableDataSource<any> = new MatTableDataSource();
-    dataSourceRep: MatTableDataSource<any> = new MatTableDataSource();
     AGENTS = Agents;
-    transcripts = Transcripts;
+    transcripts:Transcripts = _Transcripts_.default;
+    // The index of the message in the expected messages column that
+    // matches the message hovered over in the real messages column
+    matchingExpectedColumnIndex:Number = -1;
 
     @ViewChild('subHeader')
     subHeader?: TemplateRef<any>;
@@ -43,6 +45,12 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
         }
     }
 
+    // Highlight the script in the expected panel matching the one
+    // currently hovered over in the expected panel
+    highlightExpectedMessage(newIndex: Number) {
+        this.matchingExpectedColumnIndex = newIndex;
+    }
+
     constructor(
         private _tplService: TemplateService,
         private _fb: FormBuilder
@@ -54,13 +62,11 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
         });
     }
 
-    ngOnInit(): void {
-        this.dataSource.data = Transcripts.transcript;
-        this.dataSourceRep.data = Transcripts.script;
-    }
-
     ngAfterViewInit(): void {
         this._tplService.register('subHeader', this.subHeader);
+    }
+
+    ngOnInit(): void {
     }
 
     // Filter the calls made by the selected agent

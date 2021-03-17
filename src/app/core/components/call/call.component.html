@@ -3,7 +3,7 @@
         <mat-card-title>{{ tableHeader }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <table mat-table [dataSource]="dataSource" width="100%">
+        <table mat-table [dataSource]="getDataSource" width="100%">
             <ng-container matColumnDef="time">
                 <th mat-header-cell *matHeaderCellDef>{{ category === "REAL" ? "Time" : "Line" }}</th>
                 <ng-container *ngIf="category==='REAL'; then time else indices"></ng-container>
@@ -25,7 +25,6 @@
                     <td 
                     mat-cell 
                     *matCellDef="let transcript; let i = index"
-                    [ngClass]="{'hide-text': dataSource.data[i - 1]?.channel === transcript.channel}"
                     >
                         {{ getSender(transcript.channel) }}
                     </td>
@@ -37,11 +36,21 @@
 
             <ng-container matColumnDef="sentence">
                 <th mat-header-cell *matHeaderCellDef>Sentence</th>
-                <td mat-cell *matCellDef="let transcript">
+                <!--Apply a grey background for every element in the expected calls table and conditionally
+                    for those in the real category based on the slider value-->
+                <td 
+                mat-cell 
+                *matCellDef="let transcript; let i = index" 
+                [ngClass]="{'matching-message': matchingExpectedColumnIndex === i}"
+                >
                     <div 
-                    [ngClass]="{'matcher': transcript.similarity >= sliderValue / 100 }"
-                    matTooltip="61% matching with line #1 'This is a sample sentence #76'" 
+                    [ngClass]="{
+                        'matcher': category === 'EXPECTED' || transcript.similarity >= sliderValue / 100 && transcript.matching_sentence
+                    }"
+                    [matTooltip]="getMatchingSentence(transcript)"
                     matTooltipPosition="above"
+                    (mouseenter)="matchingMessageIndex(transcript)"
+                    (mouseleave)="resetMatchingIndex()"
                     >
                         {{ transcript.sentence }}
                     </div>

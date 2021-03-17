@@ -7,11 +7,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import AppComponent from './app.component';
 import { ROUTES } from './app.routing';
+import { PieComponent } from './pie/pie.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PieComponent
   ],
   imports: [
     BrowserModule,

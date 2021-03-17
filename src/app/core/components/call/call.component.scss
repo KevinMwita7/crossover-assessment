@@ -103,3 +103,8 @@ td.mat-cell {
     position: sticky;
     top: 0;
 }
+
+// Highlight the message in the comparison column
+.matching-message {
+    background: rgba(#5A5A71, .4);
+}
