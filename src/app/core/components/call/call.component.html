@@ -1,6 +1,7 @@
 <mat-card>
-    <mat-card-header>
+    <mat-card-header fxLayout fxLayoutAlign="space-between">
         <mat-card-title>{{ tableHeader }}</mat-card-title>
+        <app-pie [id]="category + '-PIE-CHART'"></app-pie>
     </mat-card-header>
     <mat-card-content>
         <table mat-table [dataSource]="getDataSource" width="100%">

@@ -15,12 +15,14 @@ import { CoreModule } from 'src/app/core/core.module';
 
 import AnalyzerComponent from './analyzer.component';
 import { CallComponent } from 'src/app/core/components/call/call.component';
+import { PieComponent } from 'src/app/core/components/pie/pie.component';
 import { ROUTES } from './analyzer.routes';
 
 @NgModule({
     declarations: [
         AnalyzerComponent,
-        CallComponent
+        CallComponent,
+        PieComponent
     ],
     imports: [
         CoreModule,
