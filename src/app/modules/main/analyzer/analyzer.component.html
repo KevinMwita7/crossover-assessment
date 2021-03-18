@@ -5,7 +5,7 @@
                 <mat-label>Agent</mat-label>
                 <mat-icon matPrefix>supervised_user_circle</mat-icon>
                 <mat-select disableOptionCentering formControlName="agent" panelClass="dropdown">
-                    <mat-option *ngFor="let AGENT of AGENTS" [value]="AGENT.agentID">{{AGENT.fullName}}</mat-option>
+                    <mat-option *ngFor="let agent of agents" [value]="agent.agentID">{{agent.fullName}}</mat-option>
                 </mat-select>
             </mat-form-field>
         
@@ -20,9 +20,6 @@
                 >
                     <mat-option *ngFor="let call of filterCalls" [value]="call.call_id">
                         {{ call.call_start_time | date: "MM.dd.yyyy." }} - {{call.customer[0].full_name}}
-                    </mat-option>
-                    <mat-option [value]="1234">
-                        1234
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -42,7 +39,7 @@
     [tableHeader]="'Real'" 
     [category]="'REAL'" 
     [sliderValue]="sliderValue" 
-    [agents]="AGENTS"
+    [agents]="agents"
     [customer]="transcripts.customer"
     [agent]="transcripts.agent"
     (expectedScriptIndex)="highlightExpectedMessage($event)"

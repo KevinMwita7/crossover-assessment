@@ -3,4 +3,5 @@ export default class Script {
     similarity!: number;
     sentence!: String;
     matching_sentence!: String;
+    channel?: number;
 }

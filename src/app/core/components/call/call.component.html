@@ -26,6 +26,7 @@
                     <td 
                     mat-cell 
                     *matCellDef="let transcript; let i = index"
+                    [ngClass]="{'hide-text': getDataSource[i - 1]?.channel === transcript.channel}"
                     >
                         {{ getSender(transcript.channel) }}
                     </td>
@@ -46,7 +47,7 @@
                 >
                     <div 
                     [ngClass]="{
-                        'matcher': category === 'EXPECTED' || transcript.similarity >= sliderValue / 100 && transcript.matching_sentence
+                        'matcher': transcript.similarity >= sliderValue / 100 && transcript.matching_sentence
                     }"
                     [matTooltip]="getMatchingSentence(transcript)"
                     matTooltipPosition="above"
